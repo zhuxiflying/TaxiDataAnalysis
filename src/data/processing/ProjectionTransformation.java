@@ -86,8 +86,7 @@ public class ProjectionTransformation {
 				writer.writeNext(entries);
 
 				while ((nextLine = reader.readNext()) != null) {
-					try {
-						
+					
 						String[] dataitem = new String[7];
 						
 						//read pickup date, drop off date, trip distance ,and write into new file.
@@ -116,9 +115,6 @@ public class ProjectionTransformation {
 						dataitem[5] = String.valueOf(p2.x);
 						dataitem[6] = String.valueOf(p2.y);
 						writer.writeNext(dataitem);
-					} catch (Exception e) {
-
-					}
 				}
 
 				writer.close();
