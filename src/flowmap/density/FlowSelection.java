@@ -19,7 +19,7 @@ public class FlowSelection {
 	public static void main(String[] args) throws Exception {
 
 		loadData();
-		System.out.println(kd.size());
+	
 
 		ArrayList<double[]> selected_flow = new ArrayList<double[]>();
 
