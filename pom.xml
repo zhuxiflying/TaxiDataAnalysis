@@ -22,6 +22,11 @@
 			<artifactId>jts</artifactId>
 			<version>1.13</version>
 		</dependency>
+		<dependency>
+			<groupId>de.biomedical-imaging.edu.wlu.cs.levy.cg</groupId>
+			<artifactId>kdtree</artifactId>
+			<version>1.0.3</version>
+		</dependency>
 	</dependencies>
 
 	<build>
