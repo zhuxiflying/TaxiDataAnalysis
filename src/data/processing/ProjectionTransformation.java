@@ -47,10 +47,9 @@ public class ProjectionTransformation {
 		 */
 
 		// traversal the file list.
-//		String[] years = { "2009", "2010", "2011", "2012", "2013", "2014", "2015" };
-//		String[] months = { "01", "02", "03", "04", "05", "06", "07", "08", "09", "10", "11", "12" };
-		String[] years = { "2009" };
-		String[] months = { "03" };
+		String[] years = { "2009", "2010", "2011", "2012", "2013", "2014", "2015" };
+		String[] months = { "01", "02", "03", "04", "05", "06", "07", "08", "09", "10", "11", "12" };
+
 		for (int y = 0; y < years.length; y++) {
 			for (int m = 0; m < months.length; m++) {
 				String year = years[y];
