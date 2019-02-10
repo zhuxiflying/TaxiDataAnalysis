@@ -2,6 +2,9 @@ package data.processing;
 
 import java.io.FileReader;
 import java.io.FileWriter;
+import java.io.Writer;
+import java.nio.file.Files;
+import java.nio.file.Paths;
 
 import org.osgeo.proj4j.CRSFactory;
 import org.osgeo.proj4j.CoordinateReferenceSystem;
@@ -49,19 +52,21 @@ public class ProjectionTransformation {
 		// traversal the file list.
 		String[] years = { "2009", "2010", "2011", "2012", "2013", "2014", "2015" };
 		String[] months = { "01", "02", "03", "04", "05", "06", "07", "08", "09", "10", "11", "12" };
+		String folder = "F:\\data\\NY_Taxi_tripdata\\";
 
 		for (int y = 0; y < years.length; y++) {
 			for (int m = 0; m < months.length; m++) {
 				String year = years[y];
 				String month = months[m];
-				String filename = "D:\\Data\\yellow_tripdata_" + year + "-" + month + ".csv";
+				String filename = folder + "yellow_tripdata_" + year + "-" + month + ".csv";
 //				System.out.println(filename);
-				String filename2 = "D:\\Data\\NY_Taxi_tripdata\\yellow_tripdata_" + year + "-" + month + ".csv";
+				String filename2 = folder + "yellow_tripdata_" + year + "-" + month + ".csv";
 				CSVReader reader = new CSVReader(new FileReader(filename));
 				reader.readNext();
 				String[] nextLine;
 
-				CSVWriter writer = new CSVWriter(new FileWriter(filename2), ',', CSVWriter.NO_QUOTE_CHARACTER);
+				 Writer fileWriter = Files.newBufferedWriter(Paths.get(filename2));
+				CSVWriter writer = new CSVWriter(fileWriter);
 				// feed in your array (or convert your data to an array)
 				String[] entries = new String[7];
 
