@@ -2,6 +2,8 @@ package data.processing;
 
 import java.io.FileReader;
 import java.io.IOException;
+import java.util.Arrays;
+import java.util.Collections;
 
 import com.opencsv.CSVReader;
 
@@ -15,7 +17,7 @@ public class TimeSeriesAnalysis {
 	
 	private static String InflowDataFolder = "D:\\Data\\NY_Taxi_tripdata6_in\\";
 	private static String OutflowDataFolder = "D:\\Data\\NY_Taxi_tripdata6_out\\";
-	private static int rowNum = 366;
+	private static int rowNum = 365;
 	private static int colNum = 168;
 	private static int polyNum = 6662;
 	
@@ -31,12 +33,19 @@ public class TimeSeriesAnalysis {
 //			System.out.println(pid+","+sumIn+","+sumOut+","+(sumIn-sumOut));
 			
 			int[] sum = sumTSByRow(ts);
+			int total = sumTS(ts);
 			System.out.print(pid);
+			int min = Integer.MAX_VALUE;
+			int max = 0;
 			for(int i=0;i<sum.length;i++)
 			{
+//				min = min<sum[i]?min:sum[i];
+//				max = max>sum[i]?max:sum[i];
 				System.out.print(","+sum[i]);
 			}
+			
 			System.out.println();
+//			System.out.println(","+min+","+max+","+total);
 			
 		}
 
