@@ -33,7 +33,15 @@ public class LocalMaximaSelection {
 					System.out.println(id + "," + coordinates[0] + "," + coordinates[1] + "," + density);
 			}
 		}
+		
+		mergePoint();
 
+	}
+
+	//merge spatial point that less than certain number of observations.
+	private static void mergePoint() {
+		// TODO Auto-generated method stub
+		
 	}
 
 	private static void loadPointDensity() throws IOException {
@@ -67,7 +75,6 @@ public class LocalMaximaSelection {
 		tree = new STRtree();
 		points = new HashMap<Integer, double[]>();
 		Envelope itemEnv;
-		;
 		while ((nextLine = reader.readNext()) != null) {
 
 			id = Integer.valueOf(nextLine[0]);
