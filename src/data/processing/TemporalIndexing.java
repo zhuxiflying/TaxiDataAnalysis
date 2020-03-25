@@ -12,11 +12,18 @@ import java.util.Locale;
 import com.opencsv.CSVReader;
 import com.opencsv.CSVWriter;
 
-
-//partition the data file into hour duration.
+/**
+ * index the time stamp of original data point by hourId, which is the number of
+ * hours since the start time of the dataset. The purpose of this step is reduce
+ * the temporal resolution to speed up data query and time series generation.
+ */
 public class TemporalIndexing {
 
 	public static void main(String[] args) throws Exception {
+
+		// Data Source Link: can be local file or cloud storage
+		String inPutDataSource = "";
+		String outPutDataSource = "";
 
 		String[] years = { "2011", "2012", "2013", "2014", "2015" };
 		String[] months = { "01", "02", "03", "04", "05", "06", "07", "08", "09", "10", "11", "12" };
@@ -37,7 +44,7 @@ public class TemporalIndexing {
 				HashMap<Integer, ArrayList<String[]>> data_segement = new HashMap<Integer, ArrayList<String[]>>();
 				String year = years[y];
 				String month = months[m];
-				String filename = "D:\\Data\\NY_Taxi_tripdata\\yellow_tripdata_" + year + "-" + month + ".csv";
+				String filename = inPutDataSource + "yellow_tripdata_" + year + "-" + month + ".csv";
 				System.out.println(filename);
 
 				CSVReader reader = new CSVReader(new FileReader(filename));
@@ -78,7 +85,7 @@ public class TemporalIndexing {
 				}
 
 				for (Integer time : data_segement.keySet()) {
-					String outputfile = "D:\\Data\\NY_Taxi_tripdata2\\" + time + ".csv";
+					String outputfile = outPutDataSource + time + ".csv";
 					CSVWriter writer = new CSVWriter(new FileWriter(outputfile));
 					// feed in your array (or convert your data to an array)
 					String[] entries = new String[6];
@@ -110,10 +117,7 @@ public class TemporalIndexing {
 					}
 					writer.close();
 				}
-
 			}
 		}
-
 	}
-
 }
