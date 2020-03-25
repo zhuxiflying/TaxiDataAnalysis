@@ -10,7 +10,7 @@ import com.vividsolutions.jts.geom.Envelope;
 import com.vividsolutions.jts.index.strtree.STRtree;
 
 /*
- * select points with local maximum density, these local maximum points are used to generate thiessen polygons
+ * select points with local maximum density, these local maximum points are used to generate Voronoi polygons
  */
 public class LocalMaximaSelection {
 
@@ -20,7 +20,6 @@ public class LocalMaximaSelection {
 
 	public static void main(String[] args) throws IOException {
 
-		// load the grid centroids
 		loadGridPoints();
 		loadPointDensity();
 
@@ -33,19 +32,14 @@ public class LocalMaximaSelection {
 					System.out.println(id + "," + coordinates[0] + "," + coordinates[1] + "," + density);
 			}
 		}
-		
-		mergePoint();
-
 	}
 
-	//merge spatial point that less than certain number of observations.
-	private static void mergePoint() {
-		// TODO Auto-generated method stub
-		
-	}
 
+	//load point density file
 	private static void loadPointDensity() throws IOException {
-		String filename = "D:\\Data\\Inflow_Density.csv";
+		
+		//A file records the spatial density of destination points.
+		String filename = "Spatial Density File";
 		CSVReader reader = new CSVReader(new FileReader(filename));
 		reader.readNext();
 		String[] nextLine;
@@ -63,9 +57,10 @@ public class LocalMaximaSelection {
 		reader.close();
 	}
 
+	//load grid point file
 	private static void loadGridPoints() throws IOException {
-		// TODO Auto-generated method stub
-		String filename = "D:\\Data\\Grids\\GridPoints.csv";
+
+		String filename = "Grid Point file Path";
 		CSVReader reader = new CSVReader(new FileReader(filename));
 		reader.readNext();
 		String[] nextLine;
@@ -87,7 +82,9 @@ public class LocalMaximaSelection {
 		}
 		reader.close();
 	}
-
+ 
+	
+	//test if this is the point with local maixmal density value
 	private static boolean isLocalMaximum(Integer pid, double searchRadius) {
 		double[] coordinates = points.get(pid);
 		int density = pointID_Density.get(pid) == null ? 0 : pointID_Density.get(pid);
