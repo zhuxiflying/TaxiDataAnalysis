@@ -1,7 +1,6 @@
 package data.processing;
 
 import java.io.FileReader;
-import java.io.FileWriter;
 import java.io.Writer;
 import java.nio.file.Files;
 import java.nio.file.Paths;
@@ -52,14 +51,15 @@ public class ProjectionTransformation {
 		// traversal the file list.
 		String[] years = { "2009", "2010", "2011", "2012", "2013", "2014", "2015" };
 		String[] months = { "01", "02", "03", "04", "05", "06", "07", "08", "09", "10", "11", "12" };
-		String folder = "F:\\data\\NY_Taxi_tripdata\\";
+		
+		//Data Source Link: can be local file or cloud storage
+		String folder = "";
 
 		for (int y = 0; y < years.length; y++) {
 			for (int m = 0; m < months.length; m++) {
 				String year = years[y];
 				String month = months[m];
 				String filename = folder + "yellow_tripdata_" + year + "-" + month + ".csv";
-//				System.out.println(filename);
 				String filename2 = folder + "yellow_tripdata_" + year + "-" + month + ".csv";
 				CSVReader reader = new CSVReader(new FileReader(filename));
 				reader.readNext();
